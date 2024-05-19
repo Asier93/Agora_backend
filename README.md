@@ -8,7 +8,7 @@ moficiar el .env
 
 # Esquema
 
-https://drawsql.app/teams/asier-1/diagrams/copy-of-koel-mysql
+https://drawsql.app/teams/asier-1/diagrams/mythoverso
 
 # Algoritmo
 

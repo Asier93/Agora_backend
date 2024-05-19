@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 const { ObjectId } = mongoose.Schema.Types;
 
-const optionSchema = mongoose.Schema(
+const optionSchema = new mongoose.Schema(
           {
                     name: {
                               type: String,

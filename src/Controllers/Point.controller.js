@@ -1,4 +1,4 @@
-import Point from "../models/point.model.js";
+import Point from "../Models/point.model.js";
 import Category from "../Models/category.model.js";
 import Option from "../Models/option.model.js";
 import Jwt from "jsonwebtoken";
