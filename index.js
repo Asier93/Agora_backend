@@ -26,3 +26,5 @@ app.use('/', pointRoutes)
 app.use('/', scoreRoutes)
 app.listen(process.env.PORT_CONNECTION)
 console.log("server on port", process.env.PORT_CONNECTION)
+
+export default app;
