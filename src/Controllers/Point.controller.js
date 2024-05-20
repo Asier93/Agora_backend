@@ -25,15 +25,15 @@ export const point = async (req, res) => {
 
   // En función de la categoría asigno el valor del punto
   let value = 0;
-  if (category.name == 1) {
-    value = "+1";
+  if (category.name == "1") {
+    value = 1;
   }
-  if (category.name == 2) {
-    value = "0";
+  if (category.name == "2") {
+    value = 0;
   }
-  if (category.name == 3) {
+  if (category.name == "3") {
     //console.log(category.name)
-    value = "0";
+    value = 0;
     // En esta opción necesitaría saber qué atributo se quedaron sin seleccionar para ponerle un punto negativo
     // Lo que está puntuado
 
