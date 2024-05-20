@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 const { ObjectId } = mongoose.Schema.Types;
 
-const pointSchema = mongoose.Schema(
+const pointSchema = new mongoose.Schema(
           {
                     userId: {
                               type: ObjectId,

@@ -2,7 +2,7 @@ import Game from "../Models/game.model.js";
 import Level from "../Models/level.model.js";
 import Block from "../Models/block.model.js";
 import Option from "../Models/option.model.js";
-import Point from "../models/point.model.js";
+import Point from "../Models/point.model.js";
 import Jwt from "jsonwebtoken";
 import Category from "../Models/category.model.js";
 import mongoose from "mongoose";
