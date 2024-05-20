@@ -4,6 +4,8 @@ import Jwt from "jsonwebtoken";
 export const getPointsByGame = async (req, res) => {
     console.log("Request received at getPointsByGame");
     const gameId = req.params.game;
+    const token = req.header("auth-token")
+    const decoded = Jwt.decode(token);
 
     try {
         const points = await Point.find({ gameId }).populate('userId optionId').exec();
