@@ -9,7 +9,7 @@ const levelSchema = mongoose.Schema(
     number: {
       type: Number,
       required: true,
-    }
+    },
   },
   { timestamps: true }
 );

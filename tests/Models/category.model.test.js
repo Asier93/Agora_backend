@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import { MongoMemoryServer } from "mongodb-memory-server";
-import Category from "../../src/Models/category.model.js"; // Asegúrate de ajustar la ruta correcta al modelo Category
+import Category from "../../src/Models/category.model.js";
 
 let mongoServer;
 
@@ -26,9 +26,7 @@ describe("Category Model Tests", () => {
 
     expect(newCategory).toBeDefined();
     expect(newCategory.name).toBe("Test Category");
-    expect(newCategory.createdAt).toBeDefined(); // Verifica que el campo createdAt está definido
-    expect(newCategory.updatedAt).toBeDefined(); // Verifica que el campo updatedAt está definido
+    expect(newCategory.createdAt).toBeDefined();
+    expect(newCategory.updatedAt).toBeDefined();
   });
-
-  // Agrega más pruebas según sea necesario
 });

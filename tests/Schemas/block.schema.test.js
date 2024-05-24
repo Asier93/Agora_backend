@@ -1,5 +1,5 @@
 import blockSchema from "../../src/Schemas/block.schema.js";
-import mongoose from "mongoose"; // Importa mongoose aquí
+import mongoose from "mongoose";
 
 describe("Block Schema", () => {
   it("should have the required fields", () => {

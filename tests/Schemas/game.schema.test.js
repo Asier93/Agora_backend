@@ -1,5 +1,5 @@
 import gameSchema from "../../src/Schemas/game.schema.js";
-import mongoose from "mongoose"; 
+import mongoose from "mongoose";
 
 describe("Game Schema", () => {
   it("should have the required fields", () => {

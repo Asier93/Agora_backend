@@ -1,5 +1,5 @@
 import pointSchema from "../../src/Schemas/point.schema.js";
-import mongoose from "mongoose"; // Importa mongoose aquí
+import mongoose from "mongoose";
 
 describe("Point Schema", () => {
   it("should have the required fields", () => {

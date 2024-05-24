@@ -1,49 +1,72 @@
-import request from 'supertest';
-import app from '../../index.js'; // Importa tu aplicación Express
-import mongoose from 'mongoose';
-import { MongoMemoryServer } from 'mongodb-memory-server';
+import request from "supertest";
+import app from "../../index.js";
+import mongoose from "mongoose";
+import { MongoMemoryServer } from "mongodb-memory-server";
+import jwt from "jsonwebtoken";
 
-describe('POST /newgame', () => {
-    let mongoServer;
+beforeAll(async () => {
+  try {
+    await mongoose.connect(process.env.DB_CONNECTION);
+    console.log("DB is connected");
+  } catch (error) {
+    console.error("Error connecting to database:", error);
+    throw error;
+  }
+});
 
-    beforeAll(async () => {
-        mongoServer = await MongoMemoryServer.create();
-        const uri = mongoServer.getUri();
-        await mongoose.connect(uri, {
-          useNewUrlParser: true,
-          useUnifiedTopology: true,
-        });
+describe("POST /newgame", () => {
+  let mongoServer;
+  let mongoTestInstance;
+  let validToken;
+
+  beforeAll(async () => {
+    try {
+      mongoServer = await MongoMemoryServer.create();
+      const uri = mongoServer.getUri();
+      console.log(`MongoMemoryServer URI: ${uri}`);
+
+      mongoTestInstance = new mongoose.Mongoose();
+      await mongoTestInstance.connect(uri, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
       });
-    
-      afterAll(async () => {
-        await mongoose.disconnect();
-        await mongoServer.stop();
+
+      validToken = jwt.sign({ _id: "mockUserId" }, process.env.TOKEN_SECRET, {
+        expiresIn: "1h",
       });
+      console.log("Generated test token:", validToken);
 
-  it('should create a new game', async () => {
-    // Simula un usuario autenticado y obtiene su token (puedes adaptarlo según tus necesidades)
-    const token = 'tu_token_de_prueba';
-
-    // Realiza una solicitud POST a la ruta /newgame con el token de autenticación
-    const response = await request(app)
-      .post('/newgame')
-      .set('auth-token', token);
-
-    // Comprueba si la solicitud fue exitosa (código de estado 200)
-    expect(response.status).toBe(200);
-
-    // Comprueba si la respuesta contiene un objeto de juego
-    expect(response.body).toHaveProperty('game');
-    expect(response.body.game).toMatchObject({
-      // Puedes agregar más comprobaciones según la estructura de tu objeto de juego
-    });
+      console.log("Connected to the memory database");
+    } catch (error) {
+      console.error("Error connecting to memory database:", error);
+      throw error;
+    }
   });
 
-  it('should return 401 if no auth token is provided', async () => {
-    // Realiza una solicitud POST a la ruta /newgame sin un token de autenticación
-    const response = await request(app).post('/newgame');
+  afterAll(async () => {
+    try {
+      await mongoTestInstance.disconnect();
+      await mongoose.disconnect();
+      await mongoServer.stop();
+      console.log("Disconnected from the memory database");
+    } catch (error) {
+      console.error("Error disconnecting from memory database:", error);
+    }
+  });
 
-    // Comprueba si la solicitud devuelve un código de estado 401 (Unauthorized)
+  it("should create a new game", async () => {
+    const response = await request(app)
+      .post("/newgame")
+      .set("auth-token", validToken);
+
+    expect(response.status).toBe(200);
+    expect(response.body).toHaveProperty("game");
+    expect(response.body.game).toHaveProperty("id");
+    expect(response.body.game).toHaveProperty("name");
+  });
+
+  it("should return 401 if no auth token is provided", async () => {
+    const response = await request(app).post("/newgame");
     expect(response.status).toBe(401);
   });
 });

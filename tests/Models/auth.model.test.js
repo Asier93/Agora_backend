@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import { MongoMemoryServer } from "mongodb-memory-server";
-import User from "../../src/Models/auth.model.js"; // Asegúrate de ajustar la ruta correcta al modelo User
+import User from "../../src/Models/auth.model.js";
 
 let mongoServer;
 
@@ -30,9 +30,7 @@ describe("User Model Tests", () => {
     expect(newUser.email).toBe("testuser@example.com");
     expect(newUser.password).toBe("testpassword");
     expect(newUser.uname).toBe("testuser");
-    expect(newUser.date).toBeDefined(); // Verifica que el campo date está definido
-    expect(new Date(newUser.date)).toBeInstanceOf(Date); // Verifica que date es una instancia de Date
+    expect(newUser.date).toBeDefined();
+    expect(new Date(newUser.date)).toBeInstanceOf(Date);
   });
-
-  // Agrega más pruebas según sea necesario
 });

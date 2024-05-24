@@ -1,5 +1,5 @@
 import optionSchema from "../../src/Schemas/option.schema.js";
-import mongoose from "mongoose"; // Importa mongoose aquí
+import mongoose from "mongoose";
 
 describe("Option Schema", () => {
   it("should have the required fields", () => {
