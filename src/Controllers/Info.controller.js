@@ -53,22 +53,37 @@ export const info = async (req, res) => {
                   block._id.toString(),
                   category._id.toString()
                 );
+              
                 const concatenatedNames = options.map((o) => o.name).join(", ");
-                const concatenatedNamesId = options
-                  .map((o) => o._id.toString())
-                  .join(", ");
-                const concatenatedDescriptions = options
-                  .map((o) => o.description)
-                  .join(", ");
-
-                res
-                  .status(200)
-                  .json(
-                    `${actualLevel}: ${actualLevelId}  | ${actualBlock}: ${actualBlockId}  | Categoría ${category.name}: ${concatenatedNames}: ${concatenatedNamesId}, ${concatenatedDescriptions} `
-                  );
+                const concatenatedNamesId = options.map((o) => o._id.toString()).join(", ");
+                const concatenatedDescriptions = options.map((o) => o.description).join(", ");
+              
+                res.status(200).json({
+                  actualLevel: {
+                    id: actualLevelId,
+                    name: actualLevel
+                  },
+                  actualBlock: {
+                    id: actualBlockId,
+                    name: actualBlock
+                  },
+                  category: {
+                    name: category.name,
+                    concatenatedNames: concatenatedNames,
+                    concatenatedNamesId: concatenatedNamesId,
+                    concatenatedDescriptions: concatenatedDescriptions,
+                    options: options.map(option => ({
+                      id: option._id.toString(),
+                      name: option.name,
+                      description: option.description
+                    }))
+                  }
+                });
+              
                 responseSent = true;
                 break;
               }
+              
             }
           }
           if (responseSent) break;
