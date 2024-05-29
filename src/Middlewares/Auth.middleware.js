@@ -1,16 +1,19 @@
 import Jwt from "jsonwebtoken";
 
 const verifyToken = (req, res, next) => {
-          const token = req.header("auth-token")
-          if (!token) return res.status(401).json({ message: "Acess Denied" })
-          try {
-                    const verified = Jwt.verify(token, process.env.TOKEN_SECRET)
-                    req.user = verified
-                    next()
+  try {
+    const token = req.header("auth-token");
+    if (!token) {
+      return res.status(401).json({ message: "Acceso denegado" });
+    }
 
-          } catch (error) {
-                    res.status(400).json({ message: "Invalid credentials" })
-          }
-}
+    const verified = Jwt.verify(token, process.env.TOKEN_SECRET);
+    req.user = verified;
+    next();
+  } catch (error) {
+    console.error("Error de autenticación:", error);
+    return res.status(401).json({ message: "Acceso denegado" });
+  }
+};
 
-export default verifyToken
+export default verifyToken;

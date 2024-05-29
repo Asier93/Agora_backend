@@ -5,21 +5,29 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^1.7.1",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^7.6.11",
-    "mongoosh": "^0.0.7",
-    "nodemon": "^3.0.1"
+    "mongoose": "^8.4.0",
+    "mongoosh": "^0.0.7"
   },
   "devDependencies": {
-    "@types/backblaze-b2": "^1.5.3"
+    "@babel/core": "^7.24.5",
+    "@babel/preset-env": "^7.24.5",
+    "@types/backblaze-b2": "^1.5.3",
+    "babel-jest": "^29.7.0",
+    "jest": "^29.7.0",
+    "mongodb-memory-server": "^9.2.0",
+    "nodemon": "^3.1.0",
+    "supertest": "^7.0.0"
   }
 }
