@@ -8,7 +8,7 @@ modificiar el .env
 
 # Esquema
 
-https://drawsql.app/teams/asier-1/diagrams/mythoverso
+https://drawsql.app/teams/asier-1/diagrams/agora
 
 # Algoritmo
 
