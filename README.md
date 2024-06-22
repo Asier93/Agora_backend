@@ -120,7 +120,6 @@ Sistema de recompensas
 
 Establecer roles: admin dashboard 
 
-Desplegar, docker
 
 
 
